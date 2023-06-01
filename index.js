@@ -53,7 +53,7 @@ app.post(
     const ext = path.extname(req.file.originalname).toLowerCase();
 
     if(ext == ".jpeg" || ext == ".jpg" || ext === ".png" || ext == ".svg") {
-      //const output = execSync('./granimate ' + req.file.filename + ' ' + r_center + ' ' + r_radius + ' ' + c_center + ' ' + c_radius + ' ' + scale + ' ' + no_frames, { encoding: 'utf-8' });
+      const output = execSync('./granimate ' + req.file.filename + ' ' + r_center + ' ' + r_radius + ' ' + c_center + ' ' + c_radius + ' ' + scale + ' ' + no_frames, { encoding: 'utf-8' });
 
       //deletes mp4 15 mins later
       //setTimeout(function(){del_mp4('public/mp4/' + req.file.filename + '.mp4')}, 60*1000);
