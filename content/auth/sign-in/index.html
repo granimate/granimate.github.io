@@ -1,0 +1,36 @@
+<table style="text-align: center; margin-top: 15vh">
+	<tr>
+		<td>
+			<input 
+				id="input-email"
+				type="email"
+				placeholder="email" 
+			>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input 
+				id="input-password"
+				type="password"
+				placeholder="password" 
+			>
+		</td>
+	</tr>
+</table>
+
+<button onclick="signIn()">sign in</button>
+
+<p>
+	<a href="@pathto(auth/forgot-password/)">forgot password?</a>
+</p>
+
+<script>
+	document.addEventListener('keypress', (event) => {
+	  var name = event.key;
+	  var code = event.code;
+
+	  if(name == 'Enter' || code == 'Enter')
+	  	signIn();
+	}, false);
+</script>

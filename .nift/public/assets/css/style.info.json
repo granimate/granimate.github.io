@@ -1,0 +1,10 @@
+{
+	"last-built": "02:52:47 Friday June 02 2023",
+	"name": "assets/css/style",
+	"title": "style",
+	"template": "templates/template.css",
+	"dependencies": [
+		"content/assets/css/style.css",
+		"templates/template.css"
+	]
+}

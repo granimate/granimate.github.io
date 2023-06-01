@@ -1,0 +1,12 @@
+{
+	"last-built": "08:09:19 Friday June 02 2023",
+	"name": "auth/update-password/",
+	"title": "auth/update-password",
+	"template": "templates/template.html",
+	"dependencies": [
+		"content/auth/update-password/index.html",
+		"templates/head.html",
+		"templates/menu.html",
+		"templates/template.html"
+	]
+}

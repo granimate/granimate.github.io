@@ -1,0 +1,19 @@
+<h1>Granimate</h1>
+
+<img src="@pathtofile(public/assets/images/logo.png)" style="width: 300px">
+
+<h2 class="col-gradient">
+	Stunningly animated gradients
+</h2>
+
+<video onclick="playpause(this)" autoplay loop muted playsinline title="@Bodhicypha"><source src="@pathtofile(public/assets/mp4/@amli_art.mp4)" type="video/mp4"></video>
+<video onclick="playpause(this)" autoplay loop muted playsinline title="@Bodhicypha"><source src="@pathtofile(public/assets/mp4/@SopmacArt.mp4)" type="video/mp4"></video>
+
+<script>
+	function playpause(elmnt) {
+		if(elmnt.paused)
+			elmnt.play();
+		else
+			elmnt.pause();
+	}
+</script>

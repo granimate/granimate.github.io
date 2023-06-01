@@ -1,0 +1,23 @@
+<table style="text-align: center; margin-top: 15vh">
+	<tr>
+		<td>
+			<input 
+				id="input-email"
+				type="email"
+				placeholder="email" 
+			>
+		</td>
+	</tr>
+</table>
+
+<button onclick="forgotPassword()">reset</button>
+
+<script>
+	document.addEventListener('keypress', (event) => {
+	  var name = event.key;
+	  var code = event.code;
+
+	  if(name == 'Enter' || code == 'Enter')
+	  	forgotPassword();
+	}, false);
+</script>

@@ -1,0 +1,225 @@
+:root {
+  --white: white;
+  --grey:  #3d3b36;
+  --brown: #5c5038;
+  --black: #181a1b;
+
+  --neon-red:    #ff3131;
+  --neon-orange: #ff9914;
+  --neon-yellow: #fbff14;
+  --neon-green:  #74db00;
+  --neon-blue:   #2b97fa;
+  --neon-purple: #c922c9;
+  --neon-pink:   #ff1493;
+
+  --sherb-red:    #e36868;
+  --sherb-orange: #e3ba68;
+  --sherb-yellow: #e3dd68;
+  --sherb-green:  #8be368;
+  --sherb-blue:   #68b8e3;
+  --sherb-purple: #9d68e3;
+  --sherb-pink:   #e368db;
+
+  --filter-neon-green:  invert(56%) sepia(64%) saturate(631%) hue-rotate(45deg)  brightness(112%) contrast(102%);
+  --filter-sherb-green: invert(96%) sepia(94%) saturate(735%) hue-rotate(39deg)  brightness(92%)  contrast(93%);;
+
+  --primary-dark: var(--black);
+  --secondary-dark: var(--grey);
+  --primary-color: var(--sherb-green);
+  --secondary-color: var(--neon-green);
+
+  --filter-primary-color: var(--filter-sherb-green);
+  --filter-secondary-color: var(--filter-neon-green);
+}
+
+html, body, div, applet, object,
+iframe, h1, h2, h3, h4, h5, h6, blockquote,
+pre, a, abbr, acronym, address, big, cite,
+code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b,
+u, i, center, dl, dt, dd, fieldset,
+form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption,
+header, hgroup, output, ruby,
+section, summary, time, mark, audio, video {
+  margin:  0 0 0 0;
+  line-height: 1.25em;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  scrollbar-color: var(--primary-color) transparent !important;
+}
+
+body {
+  background: var(--black); 
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: "ariel";
+  max-width: 100%;
+  min-height: 100%;
+}
+
+#main-page {
+  padding: 1em;
+  overflow-y: hidden;
+  max-width: 90%;
+  width: 850px;
+  /*text-align: left;*/
+}
+
+#main-page ul {
+  text-align: left;
+}
+
+ul li {
+  list-style: none;
+  list-style-position: outside !important;
+}
+
+#main-page ul li::before {
+  content: "\2022"; 
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 11pt;
+  display: inline-block; 
+  width: 1em; 
+  margin-left: -1em;
+}
+
+::-moz-selection {
+  color: var(--primary-dark);
+  background-color: var(--primary-color);
+}
+
+::selection {
+  color: var(--primary-dark);
+  background-color: var(--primary-color);
+}
+
+.noselect, br, button, .fa
+{
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+button {
+  font-size: 1em;
+  color: var(--primary-dark);
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  margin: 0.25em 0.5em;
+  background: var(--primary-color);
+  border: 0px;
+  border-radius: 0.25em;
+}
+
+button:hover {
+  background: var(--secondary-color);
+}
+
+.col-gradient {
+  color: #00d2ff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, var(--neon-purple), var(--neon-pink));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, var(--sherb-pink), var(--neon-pink)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#div-bg {
+  background: var(--sherb-blue);
+  color: var(--black);
+  max-width: 95%;
+  width: 500px;
+  margin-top: 3em;
+  padding-bottom: -1em;
+}
+
+#div-upload, #div-animating {
+  margin: 0;
+  padding: 0;
+}
+
+ #div-video {
+  margin-top: 1em;
+ }
+
+input[type="file"] {
+  background: var(--sherb-orange);
+  cursor: pointer;
+}
+
+input[type="file"]:hover {
+}
+
+video {
+  height: 350px;
+}
+
+textarea {
+  background: var(--secondary-dark);
+  color: white;
+  font-size: 1em;
+  width: 500px;
+  height: 400px;
+  max-width: 90%;
+  max-height: 70%;
+  white-space: pre;
+  overflow-x:auto;
+  resize: none;
+  padding: 0.25em 0.25em;
+  margin: 0.25em 0.5em;
+}
+
+code
+{
+  color: var(--primary-color); 
+}
+
+
+/* width */
+::-webkit-scrollbar 
+{
+  width: 8px;
+  height: 8px;
+}
+
+/* track */
+::-webkit-scrollbar-track 
+{
+  background: transparent; 
+}
+ 
+/* handle */
+::-webkit-scrollbar-thumb 
+{
+  background: var(--primary-color);
+  border-radius: 3px;
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover 
+{
+  background: var(--secondary-color); 
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

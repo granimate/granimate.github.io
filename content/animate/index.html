@@ -1,0 +1,112 @@
+<div id="div-bg">
+	<div id="div-upload">
+		<br>
+		<form method="post" enctype="multipart/form-data" action="/upload">
+		    <input id="input-file" type="file" name="file"><br><br>
+		    <table style="text-align: right;">
+				<tr>
+					<td>r-center:</td>
+					<td><input id="input-r-center" type="number" name="r-center" style="width: 4em"></td>
+					<td>r-radius:</td>
+					<td><input id="input-r-radius" type="number" name="r-radius" style="width: 4em"></td>
+				</tr>
+		    	<tr>
+					<td>c-center:</td>
+					<td><input id="input-c-center" type="number" name="c-center" style="width: 4em"></td>
+					<td>c-radius:</td>
+					<td><input id="input-c-radius" type="number" name="c-radius" style="width: 4em"></td>
+				</tr>
+				<tr>
+					<td>scale:</td>
+					<td><input id="input-scale" type="number" name="scale" style="width: 3em" min=1 onchange="check_scale()"></td>
+					<td>seconds:</td>
+					<td><input id="input-no-secs" type="number" name="no-secs" style="width: 3em" min=6 max=15 onchange="check_secs()"></td>
+				</tr>
+			</table>
+		</form><br>
+		<button onclick="animate_img()">animate</button>
+		<br><br>
+	</div>
+
+	<div id="div-animating" style="display: none">
+		<br>animating, please wait...<br><br>
+	</div>
+</div>
+
+<div id="div-ideas">
+	<br>ideas: <a href="https://lexica.art/?q=cyberpunk">cyberpunk</a>, <a href="https://lexica.art/?q=neon+robot">neon robot</a>, <a href="https://lexica.art/?q=neon+lizard">neon lizard</a>
+</div>
+
+<div id="div-video" style="display: none">
+	<video id="video" onclick="playpause(this)" loop muted playsinline><source id="source-vid" src="@pathtofile(public/assets/mp4/@SopmacArt.mp4)" type="video/mp4"></video>
+</div>
+
+<script>
+	function playpause(elmnt) {
+		if(elmnt.paused)
+			elmnt.play();
+		else
+			elmnt.pause();
+	}
+
+	async function animate_img() {
+		const formData = new FormData();
+		const fileField = document.getElementById("input-file");
+
+		if(!fileField.files.length) {
+			alert("No file chosen");
+			return;
+		}
+
+		formData.append("file", fileField.files[0]);
+		formData.append("r-center", document.getElementById("input-r-center").value);
+		formData.append("r-radius", document.getElementById("input-r-radius").value);
+		formData.append("c-center", document.getElementById("input-c-center").value);
+		formData.append("c-radius", document.getElementById("input-c-radius").value);
+		formData.append("scale", document.getElementById("input-scale").value);
+		formData.append("no-frames", 10*document.getElementById("input-no-secs").value);
+
+		try {
+			document.getElementById("div-upload").style.display = "none";
+			document.getElementById("div-ideas").style.display = "none";
+			document.getElementById("div-animating").style.display = "block";
+
+			let response = await fetch("/upload", {
+				method: "POST",
+				body: formData,
+			});
+			let result = await response.json();
+
+			document.getElementById("video").src = result["path"];
+			document.getElementById("video").play();
+			document.getElementById("div-upload").style.display = "block";
+			document.getElementById("div-animating").style.display = "none";
+			document.getElementById("div-video").style.display = "block";
+		} catch (error) {
+			alert("Error:", error);
+		}
+	}
+
+	function check_scale() {
+		if(document.getElementById('input-scale').value < 5)
+			document.getElementById('input-scale').value = 5;
+	}
+
+	function check_secs() {
+		if(document.getElementById('input-no-secs').value < 5)
+			document.getElementById('input-no-secs').value = 5;
+		else if(document.getElementById('input-no-secs').value > 15)
+			document.getElementById('input-no-secs').value = 15;
+	}
+
+	function init() {
+		document.getElementById("input-r-center").value  = 500;
+		document.getElementById("input-r-radius").value  = 750;
+		document.getElementById("input-c-center").value  = 500;
+		document.getElementById("input-c-radius").value  = 400;
+		document.getElementById("input-scale").value     = 5;
+		document.getElementById("input-no-secs").value   = 5;
+	}
+
+	init();
+</script>

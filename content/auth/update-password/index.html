@@ -1,0 +1,32 @@
+<table style="text-align: center; margin-top: 15vh">
+	<tr>
+		<td>
+			<input 
+				id="input-password"
+				type="password"
+				placeholder="password" 
+			>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input 
+				id="input-confirm-password"
+				type="password"
+				placeholder="confirm password" 
+			>
+		</td>
+	</tr>
+</table>
+
+<button onclick="updatePassword()">submit</button>
+
+<script>
+	document.addEventListener('keypress', (event) => {
+	  var name = event.key;
+	  var code = event.code;
+
+	  if(name == 'Enter' || code == 'Enter')
+	  	updatePassword();
+	}, false);
+</script>

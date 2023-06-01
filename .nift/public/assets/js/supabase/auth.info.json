@@ -1,0 +1,10 @@
+{
+	"last-built": "07:09:20 Friday June 02 2023",
+	"name": "assets/js/supabase/auth",
+	"title": "auth",
+	"template": "templates/template.js",
+	"dependencies": [
+		"content/assets/js/supabase/auth.js",
+		"templates/template.js"
+	]
+}
