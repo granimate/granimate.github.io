@@ -21,11 +21,19 @@ int main(int argc, const char* argv[])
 
 	Img img(img_path + ".png");
 
-    int rows = int(double(img.rows)/double(img.cols)*1024.0);
-	if(rows%2)
+	if(img.rows <= img.cols) {
+	    int rows = int(double(img.rows)/double(img.cols)*1024.0);
+		if(rows%2)
 		++rows;
+		std::system((std::string("convert -resize 1024x") + std::to_string(rows) + std::string("! ") + img_path + ".png " + img_path + ".png").c_str());
+	}
+	else {
+		int cols = int(double(img.cols)/double(img.rows)*1024.0);
+		if(cols%2)
+		++cols;
+		std::system((std::string("convert -resize ") + std::to_string(cols) + std::string("x1024! ") + img_path + ".png " + img_path + ".png").c_str());
+	}
 
-	std::system((std::string("convert -resize 1024x") + std::to_string(rows) + std::string("! ") + img_path + ".png " + img_path + ".png").c_str());
 	if(!dir_exists(img_path + "-frames"))
 		std::system((std::string("mkdir ") + img_path + "-frames").c_str());
 	else {

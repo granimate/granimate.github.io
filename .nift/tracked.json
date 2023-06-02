@@ -76,6 +76,21 @@
 			"name": "auth/update-password/",
 			"title": "auth/update-password",
 			"template": "templates/template.html"
+		},
+		{
+			"name": "examples/",
+			"title": "examples",
+			"template": "templates/template.html"
+		},
+		{
+			"name": "privacy-policy/",
+			"title": "privacy-policy",
+			"template": "templates/template.html"
+		},
+		{
+			"name": "tos/",
+			"title": "tos",
+			"template": "templates/template.html"
 		}
 	]
 }

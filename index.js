@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
 var options = {
   dotfiles: 'ignore',
@@ -40,9 +40,6 @@ app.post(
     const tempPath = req.file.path;
     const targetPath = path.join(__dirname, "public/uploads/image.png");
 
-    //console.log(req);
-    //console.log(req.body["r-radius"]);
-
     const r_center  = req.body["r-center"];
     const r_radius  = req.body["r-radius"];
     const c_center  = req.body["c-center"];
@@ -52,12 +49,10 @@ app.post(
 
     const ext = path.extname(req.file.originalname).toLowerCase();
 
-    if(ext == ".jpeg" || ext == ".jpg" || ext === ".png" || ext == ".svg") {
+    if(ext == ".jpeg" || ext == ".jpg" || ext === ".png" || ext == ".svg" || ext == ".webp") {
       const output = execSync('./granimate ' + req.file.filename + ' ' + r_center + ' ' + r_radius + ' ' + c_center + ' ' + c_radius + ' ' + scale + ' ' + no_frames, { encoding: 'utf-8' });
 
-      //deletes mp4 15 mins later
-      //setTimeout(function(){del_mp4('public/mp4/' + req.file.filename + '.mp4')}, 60*1000);
-      setTimeout(function(){del_mp4('public/mp4/' + req.file.filename + '.mp4')}, 15*60*1000);
+      //setTimeout(function(){del_mp4('public/mp4/' + req.file.filename + '.mp4')}, 15*60*1000);
 
       res.send('{"path": "../mp4/' + req.file.filename + '.mp4"}');
       res.status(200).end();
@@ -77,19 +72,17 @@ app.post(
   }
 );
 
-/*app.listen(port, () => {
-  console.log(`Example app served at http://localhost:${port}/`);
-});*/
-
 const http = require('http');
 const https = require('https');
 
-var privateKey = fs.readFileSync('private.key');
-var certificate = fs.readFileSync('public.crt');
+//var privateKey = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/privkey.pem' );
+//var certificate = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/fullchain.pem' );
+
+http.createServer(app).listen(80);
 
 https.createServer({
-    key: privateKey,
-    cert: certificate
-}, app).listen(port, () => {
-  console.log(`Granimate app served at localhost:${port}/`);
+    //key: privateKey,
+    //cert: certificate
+}, app).listen(443, () => {
+  console.log(`Granimate app is being served`);
 });

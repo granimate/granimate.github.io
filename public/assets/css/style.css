@@ -120,20 +120,21 @@ a:hover {
   color: var(--secondary-color);
 }
 
-button {
+.bttn-default {
   font-size: 1em;
   color: var(--primary-dark);
   cursor: pointer;
-  padding: 0.25em 0.5em;
-  margin: 0.25em 0.5em;
   background: var(--primary-color);
   border: 0px;
   border-radius: 0.25em;
+  margin: 0.25em 0.5em;
+  padding: 0.25em 0.5em;
 }
 
-button:hover {
+.bttn-default:hover {
   background: var(--secondary-color);
 }
+
 
 .col-gradient {
   color: #00d2ff;  /* fallback for old browsers */

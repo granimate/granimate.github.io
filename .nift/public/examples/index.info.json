@@ -1,0 +1,12 @@
+{
+	"last-built": "19:10:07 Friday June 02 2023",
+	"name": "examples/",
+	"title": "examples",
+	"template": "templates/template.html",
+	"dependencies": [
+		"content/examples/index.html",
+		"templates/head.html",
+		"templates/menu.html",
+		"templates/template.html"
+	]
+}

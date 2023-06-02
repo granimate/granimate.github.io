@@ -1,0 +1,12 @@
+{
+	"last-built": "19:17:12 Friday June 02 2023",
+	"name": "privacy-policy/",
+	"title": "privacy-policy",
+	"template": "templates/template.html",
+	"dependencies": [
+		"content/privacy-policy/index.html",
+		"templates/head.html",
+		"templates/menu.html",
+		"templates/template.html"
+	]
+}

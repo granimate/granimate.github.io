@@ -140,8 +140,8 @@ async function init() {
 
     if(document.getElementById("auth-details"))
       document.getElementById("auth-details").value = "signed out";
-    else if(document.getElementById("div-upload"))
-      window.location.href = "@pathto(auth/sign-in/)";
+    //else if(document.getElementById("div-upload"))
+      //window.location.href = "@pathto(auth/sign-in/)";
   }
 }
 init();
