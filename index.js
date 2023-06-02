@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 
 var options = {
   dotfiles: 'ignore',
@@ -81,11 +81,11 @@ app.post(
   console.log(`Example app served at http://localhost:${port}/`);
 });*/
 
-http = require('http'),
-https = require('https'),
+const http = require('http');
+const https = require('https');
 
-var privateKey = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/privkey.pem' );
-var certificate = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/fullchain.pem' );
+var privateKey = fs.readFileSync('private.key');
+var certificate = fs.readFileSync('public.crt');
 
 https.createServer({
     key: privateKey,
