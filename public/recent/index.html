@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>granimate</title>
+		
+		<meta name="description" content="">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="../assets/css/style.css">
+		<link rel="stylesheet" href="../assets/css/font-awesome.css">
+		<link rel="stylesheet" href="../assets/css/menu.css">
+	</head>
+
+	<body>
+		<div align="center">
+			<div class="menu-bars">
+			  <i id="open-menu-icon" class="fa fa-bars fa-primary-color" onclick="show_menu()"></i>
+			</div>
+			
+			<div id="menu-page">
+			  <div class="menu-cross" >
+			    <i id="close-menu-icon" class="fa fa-xmark fa-primary-color" onclick="close_menu()"></i>
+			  </div>
+			
+			  <a href="../auth/sign-up/" id="sign-up-link"><button class="bttn-default">sign up</button></a>
+			  <a href="../auth/sign-in/" id="sign-in-link"><button class="bttn-default">sign in</button></a>
+			  <button id="sign-out-button" onclick="signOut()" class="bttn-default">sign out</button>
+			  
+			  
+			  <nav id="nav" class="noselect">
+			    <ul>
+			      <li class="item li-menu li-dark">
+			        <a class="item-link" href="../">home</a>
+			      </li>
+			      <li class="item li-menu li-dark">
+			        <a class="item-link" href="../animate/">animate</a>
+			      </li>
+			      <li class="item li-menu li-dark">
+			        <a class="item-link" href="../examples/">examples</a>
+			      </li>
+			      <li class="item li-menu li-dark has-submenu">
+			        <button class="submenu-link" onclick="toggle_submenu(0)">resources</button>
+			        <ul class="submenu" align="center">
+			          <li class="subitem"><a href="https://lexica.art">Lexica Art</a></li>
+			          <li class="subitem"><a href="https://midjourney.com">Midjourney</a></li>
+			          <li class="subitem"><a href="https://stablediffusionweb.com/">Stable Diffusion</a></li>
+			        </ul>
+			      </li>
+			      <li class="item li-menu li-dark has-submenu">
+			        <button class="submenu-link" onclick="toggle_submenu(1)">company</button>
+			        <ul class="submenu" align="center">
+			          <li class="subitem"><a href="../tos/">tos</a></li>
+			          <li class="subitem"><a href="../privacy-policy/">privacy policy</a></li>
+			        </ul>
+			      </li>
+			    </ul>
+			  </nav>
+			
+			  <img src="../assets/images/logo.png" style="width: 200px">
+			</div>
+
+			<div id="main-page">
+				<h1>Recent</h1>
+				<div id="vids">
+				</div>
+				
+				<script>
+					function playpause(elmnt) {
+						if(elmnt.paused)
+							elmnt.play();
+						else
+							elmnt.pause();
+					}
+				
+					async function init() {
+						let response = await fetch("/uploaded");
+						let uploaded = await response.json();
+				
+						const vids = document.getElementById("vids");
+				
+						for(let i=uploaded.length-1; i>=Math.max(uploaded.length-30, 0); --i) {
+							vids.innerHTML += "<video onclick=\"playpause(this)\" loop muted playsinline><source src=\"../" + uploaded[i] + "\" type=\"video/mp4\"></video><br>";
+						}
+					}
+					init();
+				</script>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../assets/js/script.js"></script>
+		<script type="text/javascript" src="../assets/js/menu.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+		<script type="text/javascript" src="../assets/js/supabase/auth.js"></script>
+	</body>
+</html>

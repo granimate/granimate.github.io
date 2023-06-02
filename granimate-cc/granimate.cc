@@ -22,16 +22,16 @@ int main(int argc, const char* argv[])
 	Img img(img_path + ".png");
 
 	if(img.rows <= img.cols) {
-	    int rows = int(double(img.rows)/double(img.cols)*1024.0);
+	    int rows = int(double(img.rows)/double(img.cols)*512.0);
 		if(rows%2)
 		++rows;
-		std::system((std::string("convert -resize 1024x") + std::to_string(rows) + std::string("! ") + img_path + ".png " + img_path + ".png").c_str());
+		std::system((std::string("convert -resize 512x") + std::to_string(rows) + std::string("! ") + img_path + ".png " + img_path + ".png").c_str());
 	}
 	else {
-		int cols = int(double(img.cols)/double(img.rows)*1024.0);
+		int cols = int(double(img.cols)/double(img.rows)*512.0);
 		if(cols%2)
 		++cols;
-		std::system((std::string("convert -resize ") + std::to_string(cols) + std::string("x1024! ") + img_path + ".png " + img_path + ".png").c_str());
+		std::system((std::string("convert -resize ") + std::to_string(cols) + std::string("x512! ") + img_path + ".png " + img_path + ".png").c_str());
 	}
 
 	if(!dir_exists(img_path + "-frames"))

@@ -33,6 +33,12 @@ function del_mp4(path) {
   execSync('rm ' + path, { encoding: 'utf-8' });
 }
 
+var uploaded = [];
+
+app.get('/uploaded', (req, res) => {
+    res.send(JSON.stringify(uploaded));
+})
+
 app.post(
   "/upload",
   upload.single("file" /* name attribute of <file> element in form */),
@@ -51,6 +57,8 @@ app.post(
 
     if(ext == ".jpeg" || ext == ".jpg" || ext === ".png" || ext == ".svg" || ext == ".webp") {
       const output = execSync('./granimate ' + req.file.filename + ' ' + r_center + ' ' + r_radius + ' ' + c_center + ' ' + c_radius + ' ' + scale + ' ' + no_frames, { encoding: 'utf-8' });
+
+      uploaded.push('mp4/' + req.file.filename + '.mp4');
 
       //setTimeout(function(){del_mp4('public/mp4/' + req.file.filename + '.mp4')}, 15*60*1000);
 

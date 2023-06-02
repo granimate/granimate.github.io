@@ -127,7 +127,7 @@ async function init() {
     document.getElementById("sign-up-link").style.display = "none";
     document.getElementById("sign-in-link").style.display = "none";
     document.getElementById("sign-out-button").style.display = "inline";
-    document.getElementById("details-link").style.display = "inline";
+    //document.getElementById("details-link").style.display = "inline";
 
     if(document.getElementById("auth-details"))
       document.getElementById("auth-details").value = JSON.stringify(sesh["data"]["session"], null, "  ");
@@ -136,7 +136,7 @@ async function init() {
     document.getElementById("sign-up-link").style.display = "inline";
     document.getElementById("sign-in-link").style.display = "inline";
     document.getElementById("sign-out-button").style.display = "none";
-    document.getElementById("details-link").style.display = "none";
+    //document.getElementById("details-link").style.display = "none";
 
     if(document.getElementById("auth-details"))
       document.getElementById("auth-details").value = "signed out";

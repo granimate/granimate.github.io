@@ -88,6 +88,11 @@
 			"template": "templates/template.html"
 		},
 		{
+			"name": "recent/",
+			"title": "recent",
+			"template": "templates/template.html"
+		},
+		{
 			"name": "tos/",
 			"title": "tos",
 			"template": "templates/template.html"

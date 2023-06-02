@@ -1,0 +1,12 @@
+{
+	"last-built": "00:52:50 Saturday June 03 2023",
+	"name": "recent/",
+	"title": "recent",
+	"template": "templates/template.html",
+	"dependencies": [
+		"content/recent/index.html",
+		"templates/head.html",
+		"templates/menu.html",
+		"templates/template.html"
+	]
+}
