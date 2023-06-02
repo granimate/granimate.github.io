@@ -77,6 +77,19 @@ app.post(
   }
 );
 
-app.listen(port, () => {
+/*app.listen(port, () => {
   console.log(`Example app served at http://localhost:${port}/`);
+});*/
+
+http = require('http'),
+https = require('https'),
+
+var privateKey = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/privkey.pem' );
+var certificate = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/fullchain.pem' );
+
+https.createServer({
+    key: privateKey,
+    cert: certificate
+}, app).listen(port, () => {
+  console.log(`Granimate app served at localhost:${port}/`);
 });

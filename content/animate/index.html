@@ -77,9 +77,7 @@
 			});
 			let result = await response.json();
 
-			alert(result["path"]);
-
-			document.getElementById("video").src = 'https://granimategithubio-production.up.railway.app/' + result["path"];
+			document.getElementById("video").src = result["path"];
 			document.getElementById("video").play();
 			document.getElementById("div-upload").style.display = "block";
 			document.getElementById("div-animating").style.display = "none";

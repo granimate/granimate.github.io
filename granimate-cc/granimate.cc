@@ -34,7 +34,7 @@ int main(int argc, const char* argv[])
 	}
 	Img resized_img(img_path + ".png");
 
-	/*animate_point_ellipse_offset_hue(resized_img,
+	animate_point_ellipse_offset_hue(resized_img,
 		                             r_center, //r-center
 		                             c_center,//c-center
 		                             r_radius, //r-radius
@@ -42,7 +42,7 @@ int main(int argc, const char* argv[])
 		                             scale,   //scale
 		                             no_frames,  //no frames
 		                             10,  //fps
-		                             std::string(img_filename));*/
+		                             std::string(img_filename));
 
 	std::system((std::string("rm ./") + img_path + std::string("-frames/*.png")).c_str());
 	std::system((std::string("rmdir ") + img_path + "-frames").c_str());
