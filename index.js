@@ -83,14 +83,14 @@ app.post(
 const http = require('http');
 const https = require('https');
 
-//var privateKey = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/privkey.pem' );
-//var certificate = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/fullchain.pem' );
+var privateKey = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/privkey.pem' );
+var certificate = fs.readFileSync( '/etc/letsencrypt/live/granimate.art/fullchain.pem' );
 
 http.createServer(app).listen(80);
 
 https.createServer({
-    //key: privateKey,
-    //cert: certificate
+    key: privateKey,
+    cert: certificate
 }, app).listen(443, () => {
   console.log(`Granimate app is being served`);
 });
