@@ -83,7 +83,7 @@
 									<td>scale:</td>
 									<td><input id="input-scale" type="number" name="scale" style="width: 3em" min=1 onchange="check_scale()"></td>
 									<td>seconds:</td>
-									<td><input id="input-no-secs" type="number" name="no-secs" style="width: 3em" min=6 max=15 onchange="check_secs()"></td>
+									<td><input id="input-no-secs" type="number" name="no-secs" style="width: 3em" min=3 max=8 onchange="check_secs()"></td>
 								</tr>
 							</table>
 						</form><br>
@@ -116,13 +116,13 @@
 					async function animate_img() {
 						const formData = new FormData();
 						const fileField = document.getElementById("input-file");
-						const ext = fileField.files[0].name.split('.').pop();
+						const ext = fileField.files[0].name.split('.').pop().toLowerCase();
 				
 						if(!fileField.files.length) {
 							alert("No file chosen");
 							return;
 						}
-						else if(ext != ".jpg" && 
+						else if(ext != "jpg" && 
 							ext != "jpeg" && 
 							ext != "png" && 
 							ext != "svg" &&
