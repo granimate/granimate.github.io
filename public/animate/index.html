@@ -111,6 +111,10 @@
 				
 				<div id="div-video" style="display: none">
 					<video id="video" onclick="playpause(this)" loop muted playsinline><source id="source-vid" src="../assets/mp4/@SopmacArt.mp4" type="video/mp4"></video>
+				
+					<p>
+						<a href="#" download id="link-video-download"><button class="btn">download</button></a>
+					</p>
 				</div>
 				
 				<script>
@@ -162,6 +166,7 @@
 							});
 							let result = await response.json();
 				
+							document.getElementById("link-video-download").href = result["path"];
 							document.getElementById("video").src = result["path"];
 							document.getElementById("video").play();
 							document.getElementById("div-upload").style.display = "flex";
