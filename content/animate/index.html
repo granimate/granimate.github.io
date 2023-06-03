@@ -1,37 +1,44 @@
 <div id="div-bg">
 	<div id="div-upload">
-		<br>
-		<form method="post" enctype="multipart/form-data" action="/upload">
-		    <input id="input-file" type="file" accept="image/*" name="file"><br><br>
-		    <table style="text-align: right;">
-				<tr>
-					<td>r-center:</td>
-					<td><input id="input-r-center" type="number" name="r-center" style="width: 4em"></td>
-					<td>r-radius:</td>
-					<td><input id="input-r-radius" type="number" name="r-radius" style="width: 4em"></td>
-				</tr>
-		    	<tr>
-					<td>c-center:</td>
-					<td><input id="input-c-center" type="number" name="c-center" style="width: 4em"></td>
-					<td>c-radius:</td>
-					<td><input id="input-c-radius" type="number" name="c-radius" style="width: 4em"></td>
-				</tr>
-				<tr>
-					<td>scale:</td>
-					<td><input id="input-scale" type="number" name="scale" style="width: 3em" min=1 onchange="check_scale()"></td>
-					<td>seconds:</td>
-					<td><input id="input-no-secs" type="number" name="no-secs" style="width: 3em" min=3 max=8 onchange="check_secs()"></td>
-				</tr>
-			</table>
-		</form><br>
-		<button onclick="animate_img()" class="bttn-default">animate</button>
-		<br><br>
+		<div class="title">
+			<h3>Drop file to upload</h3>
+		</div>
+
+		<div class="dropzone">
+			<img src="@pathto(public/assets/images/upload.svg)" class="upload-icon" />
+			<input id="input-file" type="file" class="upload-input" accept="image/*" onchange="display_filename()" />
+		</div>
+
+		<h3 id="filename">no file selected</h3>
+
+		<table style="text-align: right; margin-top: -20px">
+			<tr>
+				<td>r-center:</td>
+				<td><input id="input-r-center" type="number" name="r-center" style="width: 3.5em"></td>
+				<td>r-radius:</td>
+				<td><input id="input-r-radius" type="number" name="r-radius" style="width: 3.5em"></td>
+			</tr>
+	    	<tr>
+				<td>c-center:</td>
+				<td><input id="input-c-center" type="number" name="c-center" style="width: 3.5em"></td>
+				<td>c-radius:</td>
+				<td><input id="input-c-radius" type="number" name="c-radius" style="width: 3.5em"></td>
+			</tr>
+			<tr>
+				<td>scale:</td>
+				<td><input id="input-scale" type="number" name="scale" style="width: 3.5em" min=3 onchange="check_scale()"></td>
+				<td>seconds:</td>
+				<td><input id="input-no-secs" type="number" name="no-secs" style="width: 3.5em" min=3 max=8 onchange="check_secs()"></td>
+			</tr>
+		</table>
+		<button onclick="animate_img()" type="button" class="btn">animate</button>
 	</div>
 
 	<div id="div-animating" style="display: none">
 		<br>animating, please wait...<br><br>
 	</div>
 </div>
+
 
 <div id="div-ideas">
 	<br>ideas: <a href="https://lexica.art/?q=cyberpunk">cyberpunk</a>, <a href="https://lexica.art/?q=neon+robot">neon robot</a>, <a href="https://lexica.art/?q=neon+lizard">neon lizard</a>
@@ -48,6 +55,10 @@
 			elmnt.play();
 		else
 			elmnt.pause();
+	}
+
+	async function display_filename() {
+		document.getElementById("filename").innerText = document.getElementById("input-file").value.split('\\').pop();
 	}
 
 	async function animate_img() {
@@ -89,7 +100,7 @@
 
 			document.getElementById("video").src = result["path"];
 			document.getElementById("video").play();
-			document.getElementById("div-upload").style.display = "block";
+			document.getElementById("div-upload").style.display = "flex";
 			document.getElementById("div-animating").style.display = "none";
 			document.getElementById("div-video").style.display = "block";
 		} catch (error) {
@@ -98,15 +109,15 @@
 	}
 
 	function check_scale() {
-		if(document.getElementById('input-scale').value < 5)
-			document.getElementById('input-scale').value = 5;
+		if(document.getElementById('input-scale').value < 3)
+			document.getElementById('input-scale').value = 3;
 	}
 
 	function check_secs() {
-		if(document.getElementById('input-no-secs').value < 5)
-			document.getElementById('input-no-secs').value = 5;
-		else if(document.getElementById('input-no-secs').value > 15)
-			document.getElementById('input-no-secs').value = 15;
+		if(document.getElementById('input-no-secs').value < 3)
+			document.getElementById('input-no-secs').value = 3;
+		else if(document.getElementById('input-no-secs').value > 8)
+			document.getElementById('input-no-secs').value = 8;
 	}
 
 	function init() {

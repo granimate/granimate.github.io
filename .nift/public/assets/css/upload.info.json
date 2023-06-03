@@ -1,0 +1,10 @@
+{
+	"last-built": "18:26:32 Saturday June 03 2023",
+	"name": "assets/css/upload",
+	"title": "upload",
+	"template": "templates/template.css",
+	"dependencies": [
+		"content/assets/css/upload.css",
+		"templates/template.css"
+	]
+}

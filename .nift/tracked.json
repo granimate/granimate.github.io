@@ -32,6 +32,13 @@
 			"output-ext": ".css"
 		},
 		{
+			"name": "assets/css/upload",
+			"title": "upload",
+			"template": "templates/template.css",
+			"content-ext": ".css",
+			"output-ext": ".css"
+		},
+		{
 			"name": "assets/js/menu",
 			"title": "menu",
 			"template": "templates/template.js",
