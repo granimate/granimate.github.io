@@ -27,16 +27,17 @@
 			</tr>
 			<tr>
 				<td>scale:</td>
-				<td><input id="input-scale" type="number" name="scale" style="width: 3.5em" min=3 onchange="check_scale()"></td>
+				<td><input id="input-scale" type="number" name="scale" style="width: 3.5em" min=1 onchange="check_scale()"></td>
 				<td>seconds:</td>
-				<td><input id="input-no-secs" type="number" name="no-secs" style="width: 3.5em" min=3 max=8 onchange="check_secs()"></td>
+				<td><input id="input-no-secs" type="number" name="no-secs" style="width: 3.5em" min=3 max=10 onchange="check_secs()"></td>
 			</tr>
 		</table>
 		<button onclick="animate_img()" type="button" class="btn">animate</button>
 	</div>
 
-	<div id="div-animating" style="display: none">
-		<br>animating, please wait...<br><br>
+	<div id="div-animating" style="display: none; padding-top: 50px">
+		animating, please wait...<br><br>
+		<img src="@pathtofile(public/assets/images/logo.png)" style="width: 300px">
 	</div>
 </div>
 
@@ -115,15 +116,15 @@
 	}
 
 	function check_scale() {
-		if(document.getElementById('input-scale').value < 3)
-			document.getElementById('input-scale').value = 3;
+		if(document.getElementById('input-scale').value < 1)
+			document.getElementById('input-scale').value = 1;
 	}
 
 	function check_secs() {
 		if(document.getElementById('input-no-secs').value < 3)
 			document.getElementById('input-no-secs').value = 3;
-		else if(document.getElementById('input-no-secs').value > 8)
-			document.getElementById('input-no-secs').value = 8;
+		else if(document.getElementById('input-no-secs').value > 10)
+			document.getElementById('input-no-secs').value = 10;
 	}
 
 	function init() {

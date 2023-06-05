@@ -1,10 +1,10 @@
 {
-	"last-built": "17:39:28 Saturday June 03 2023",
-	"name": "examples/",
-	"title": "examples",
+	"last-built": "16:10:50 Monday June 05 2023",
+	"name": "showcase/",
+	"title": "showcase",
 	"template": "templates/template.html",
 	"dependencies": [
-		"content/examples/index.html",
+		"content/showcase/index.html",
 		"templates/head.html",
 		"templates/menu.html",
 		"templates/template.html"

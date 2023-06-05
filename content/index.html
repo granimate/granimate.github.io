@@ -1,19 +1,15 @@
 <h1>Granimate</h1>
 
-<img src="@pathtofile(public/assets/images/logo.png)" style="width: 300px">
+@//<img src="@pathtofile(public/assets/images/logo.png)" style="width: 300px">
+<video onclick="playpause(this)" autoplay loop muted playsinline style="height: 200px"><source src="@pathtofile(public/assets/mp4/logo.mp4)" type="video/mp4"></video>
 
 <h2 class="col-gradient">
 	Digitally animate AI generated artwork
 </h2>
 
 <p>
-	<a href="@pathto(animate/)"><button type="button" class="btn">animate</button></a> <a href="@pathto(examples/)"><button type="button" class="btn">examples</button></a>
+	<a href="@pathto(animate/)"><button type="button" class="btn">animate</button></a> <a href="@pathto(showcase/)"><button type="button" class="btn">showcase</button></a>
 </p>
-
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@SopmacArt.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@amli_art.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/box.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/lizard.mp4)" type="video/mp4"></video>
 
 <script>
 	function playpause(elmnt) {

@@ -4,6 +4,8 @@ import (
     "github.com/gofiber/fiber/v2"
     "fmt"
     "os/exec"
+    "strings"
+    "time"
 )
 
 func main() {
@@ -15,7 +17,7 @@ func main() {
         return c.SendString("Hello, World!")
     })
 
-    app.Get("/ls", func(c *fiber.Ctx) error {
+    /*app.Get("/ls", func(c *fiber.Ctx) error {
         cmd := exec.Command("ls", "-l")
         out, err := cmd.CombinedOutput()
         if(err != nil) { 
@@ -23,9 +25,26 @@ func main() {
         }   
 
         return c.SendString(fmt.Sprintf("%s\n", out))
+    })*/
+
+    var uploaded []string
+
+    app.Get("/uploaded", func(c *fiber.Ctx) error {
+        return c.SendString("[\"" + strings.Join(uploaded, "\",\"") + "\"]")
     })
 
+    no_started := 0
+    no_finished := 0
+    max_animating := 10
+
     app.Post("/upload", func(c *fiber.Ctx) error {
+        cid := no_started
+        no_started++
+
+        for(cid >= no_finished + max_animating) {
+            time.Sleep(1*time.Second)
+        }
+
         // Get first file from form field "file":
         file, err := c.FormFile("file")
         if(err != nil) {
@@ -33,7 +52,7 @@ func main() {
         }
 
         // Save file to root directory:
-        c.SaveFile(file, fmt.Sprintf("./uploads/%s", file.Filename))
+        c.SaveFile(file, fmt.Sprintf("./uploads/%d", cid))
 
         r_center := c.FormValue("r-center")
         c_center := c.FormValue("c-center")
@@ -42,17 +61,19 @@ func main() {
         scale := c.FormValue("scale")
         no_frames := c.FormValue("no-frames")
 
-        cmd := exec.Command("./granimate", file.Filename, r_center, r_radius, c_center, c_radius, scale, no_frames)
+        cmd := exec.Command("./granimate", fmt.Sprintf("%d", cid), r_center, r_radius, c_center, c_radius, scale, no_frames)
         err = cmd.Run()
         if(err != nil) { 
             //fmt.Println("Error: ", err)
         }
 
-        fmt.Println(fmt.Sprintf("{\"path\": \"../mp4/%s.mp4\"}", file.Filename))
+        uploaded = append(uploaded, fmt.Sprintf("mp4/%d.mp4", cid))
 
-        return c.SendString(fmt.Sprintf("{\"path\": \"../mp4/%s.mp4\"}", file.Filename))
+        no_finished++
+
+        return c.SendString(fmt.Sprintf("{\"path\": \"../mp4/%d.mp4\"}", cid))
     })
 
-    app.Listen(":80")
-    //app.ListenTLS(":443", "/etc/letsencrypt/live/granimate.art/privkey.pem", "/etc/letsencrypt/live/granimate.art/fullchain.pem");
+    //app.Listen(":80")
+    app.ListenTLS(":443", "/etc/letsencrypt/live/granimate.art/fullchain.pem", "/etc/letsencrypt/live/granimate.art/privkey.pem");
 }

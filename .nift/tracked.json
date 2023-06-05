@@ -85,11 +85,6 @@
 			"template": "templates/template.html"
 		},
 		{
-			"name": "examples/",
-			"title": "examples",
-			"template": "templates/template.html"
-		},
-		{
 			"name": "privacy-policy/",
 			"title": "privacy-policy",
 			"template": "templates/template.html"
@@ -97,6 +92,11 @@
 		{
 			"name": "recent/",
 			"title": "recent",
+			"template": "templates/template.html"
+		},
+		{
+			"name": "showcase/",
+			"title": "showcase",
 			"template": "templates/template.html"
 		},
 		{
