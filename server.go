@@ -4,7 +4,6 @@ import (
     "github.com/gofiber/fiber/v2"
     "fmt"
     "os/exec"
-    "strings"
     "time"
 )
 
