@@ -85,13 +85,13 @@
 			"template": "templates/template.html"
 		},
 		{
-			"name": "privacy-policy/",
-			"title": "privacy-policy",
+			"name": "community/",
+			"title": "community",
 			"template": "templates/template.html"
 		},
 		{
-			"name": "recent/",
-			"title": "recent",
+			"name": "privacy-policy/",
+			"title": "privacy-policy",
 			"template": "templates/template.html"
 		},
 		{

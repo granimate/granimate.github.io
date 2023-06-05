@@ -27,15 +27,13 @@ func main() {
         return c.SendString(fmt.Sprintf("%s\n", out))
     })*/
 
-    var uploaded []string
-
-    app.Get("/uploaded", func(c *fiber.Ctx) error {
-        return c.SendString("[\"" + strings.Join(uploaded, "\",\"") + "\"]")
-    })
-
     no_started := 0
     no_finished := 0
     max_animating := 10
+
+    app.Get("/max-id", func(c *fiber.Ctx) error {
+        return c.SendString(fmt.Sprintf("%d", no_finished))
+    })
 
     app.Post("/upload", func(c *fiber.Ctx) error {
         cid := no_started
@@ -66,8 +64,6 @@ func main() {
         if(err != nil) { 
             //fmt.Println("Error: ", err)
         }
-
-        uploaded = append(uploaded, fmt.Sprintf("mp4/%d.mp4", cid))
 
         no_finished++
 

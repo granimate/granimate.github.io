@@ -1,10 +1,10 @@
 {
-	"last-built": "16:10:50 Monday June 05 2023",
-	"name": "recent/",
-	"title": "recent",
+	"last-built": "00:17:53 Tuesday June 06 2023",
+	"name": "community/",
+	"title": "community",
 	"template": "templates/template.html",
 	"dependencies": [
-		"content/recent/index.html",
+		"content/community/index.html",
 		"templates/head.html",
 		"templates/menu.html",
 		"templates/template.html"

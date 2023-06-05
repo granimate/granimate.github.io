@@ -62,9 +62,12 @@
 			</div>
 
 			<div id="main-page">
-				<h1>Recent</h1>
-				<div id="vids">
-				</div>
+				<h1>Community</h1>
+				<div id="vids" style="margin-top: 10vh">
+				</div><br>
+				
+				<button type="button" class="btn" onclick="prev_vid()">previous</button>
+				<button type="button" class="btn" onclick="next_vid()">next</button>
 				
 				<script>
 					function playpause(elmnt) {
@@ -74,15 +77,41 @@
 							elmnt.pause();
 					}
 				
+					var curr = -1;
+					var max_id = 0;
+				
+					function prev_vid() {
+						if(--curr < 0)
+							curr = max_id-1;
+				
+						vids.innerHTML = "<video onclick=\"playpause(this)\" autoplay loop muted playsinline><source src=\"../mp4/" + curr + ".mp4\" type=\"video/mp4\"></video><br>";
+					}
+				
+					function next_vid() {
+						curr = (curr+1)%max_id;
+				
+						vids.innerHTML = "<video onclick=\"playpause(this)\" autoplay loop muted playsinline><source src=\"../mp4/" + curr + ".mp4\" type=\"video/mp4\"></video><br>";
+					}
+				
+					document.addEventListener('keydown', (event) => {
+					  var name = event.key;
+					  var code = event.code;
+				
+					  if(name == 'ArrowLeft' || code == 'ArrowLeft')
+					  	prev_vid();
+				
+					  if(name == 'ArrowRight' || code == 'ArrowRight')
+					  	next_vid();
+					}, false);
+				
 					async function init() {
-						let response = await fetch("/uploaded");
-						let uploaded = await response.json();
+						let response = await fetch("/max-id");
+						max_id = JSON.stringify(await response.json());
+						curr = max_id-1;
 				
 						const vids = document.getElementById("vids");
 				
-						for(let i=uploaded.length-1; i>=Math.max(uploaded.length-30, 0); --i) {
-							vids.innerHTML += "<video onclick=\"playpause(this)\" loop muted playsinline><source src=\"../" + uploaded[i] + "\" type=\"video/mp4\"></video><br>";
-						}
+						vids.innerHTML = "<video onclick=\"playpause(this)\" autoplay loop muted playsinline><source src=\"../mp4/" + curr + ".mp4\" type=\"video/mp4\"></video><br>";
 					}
 					init();
 				</script>

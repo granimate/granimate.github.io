@@ -1,15 +1,20 @@
-<h1>Examples</h1>
+<h1>Showcase</h1>
 
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@amli_art.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@SopmacArt.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@brauliobaltazar.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@SterlingEly.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/box.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/box2.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@booyah.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@image_in_1.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/bzzz.mp4)" type="video/mp4"></video>
-<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/lizard.mp4)" type="video/mp4"></video>
+<div style="margin-top: 10vh">
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@amli_art.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@SopmacArt.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@brauliobaltazar.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@SterlingEly.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/box.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/box2.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@booyah.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/@image_in_1.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/bzzz.mp4)" type="video/mp4"></video>
+	<video onclick="playpause(this)" autoplay loop muted playsinline><source src="@pathtofile(public/assets/mp4/lizard.mp4)" type="video/mp4"></video>
+</div><br>
+
+<button type="button" class="btn" onclick="prev_vid()">previous</button>
+<button type="button" class="btn" onclick="next_vid()">next</button>
 
 <script>
 	function playpause(elmnt) {
@@ -18,4 +23,35 @@
 		else
 			elmnt.pause();
 	}
+
+	const vids = document.getElementsByTagName("video");
+	for(let v=0; v<vids.length; ++v)
+		vids[v].style.display = "none";
+
+	var curr = 0;
+	vids[curr].style.display = "flex";
+
+	function prev_vid() {
+		vids[curr].style.display = "none";
+		if(--curr < 0)
+			curr = vids.length-1;
+		vids[curr].style.display = "flex";
+	}
+
+	function next_vid() {
+		vids[curr].style.display = "none";
+		curr = (curr+1)%vids.length;
+		vids[curr].style.display = "flex";
+	}
+
+	document.addEventListener('keydown', (event) => {
+	  var name = event.key;
+	  var code = event.code;
+
+	  if(name == 'ArrowLeft' || code == 'ArrowLeft')
+	  	prev_vid();
+
+	  if(name == 'ArrowRight' || code == 'ArrowRight')
+	  	next_vid();
+	}, false);
 </script>
