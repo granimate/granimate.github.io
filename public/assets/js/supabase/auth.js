@@ -28,6 +28,7 @@ function signUp() {
 }
 
 function signIn() {
+  alert("wtf");
   const email = document.getElementById("input-email").value;
   const password = document.getElementById("input-password").value;
 
@@ -109,6 +110,7 @@ function setToken(response) {
   document.getElementById("sign-in-link").style.display = "none";
   document.getElementById("sign-out-button").style.display = "inline";
   //document.getElementById("details-link").style.display = "inline";
+
 
   //alert('Logged in as ' + response.user.email)
 }
