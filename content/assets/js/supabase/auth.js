@@ -93,7 +93,7 @@ function signOut() {
       document.getElementById("sign-up-link").style.display = "inline";
       document.getElementById("sign-in-link").style.display = "inline";
       document.getElementById("sign-out-button").style.display = "none";
-      document.getElementById("details-link").style.display = "none";
+      //document.getElementById("details-link").style.display = "none";
       window.location.href = "@pathto(/)";
     })
     .catch((err) => {
@@ -108,7 +108,7 @@ function setToken(response) {
   document.getElementById("sign-up-link").style.display = "none";
   document.getElementById("sign-in-link").style.display = "none";
   document.getElementById("sign-out-button").style.display = "inline";
-  document.getElementById("details-link").style.display = "inline";
+  //document.getElementById("details-link").style.display = "inline";
 
   //alert('Logged in as ' + response.user.email)
 }
