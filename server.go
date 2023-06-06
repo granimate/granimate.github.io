@@ -4,6 +4,7 @@ import (
     "github.com/gofiber/fiber/v2"
     "fmt"
     "os/exec"
+    "strconv"
     "time"
 )
 
@@ -31,7 +32,7 @@ func main() {
     max_animating := 10
 
     app.Get("/max-id", func(c *fiber.Ctx) error {
-        return c.SendString(fmt.Sprintf("%d", no_finished))
+        return c.SendString(strconv.Itoa(no_finished))
     })
 
     app.Post("/upload", func(c *fiber.Ctx) error {
@@ -48,8 +49,9 @@ func main() {
             //log.Fatal(err)
         }
 
-        // Save file to root directory:
+        // Save file to uploads directory:
         c.SaveFile(file, fmt.Sprintf("./uploads/%d", cid))
+        //c.SaveFile(file, "./uploads/" + strconv.Itoa(cid))
 
         r_center := c.FormValue("r-center")
         c_center := c.FormValue("c-center")
@@ -58,7 +60,7 @@ func main() {
         scale := c.FormValue("scale")
         no_frames := c.FormValue("no-frames")
 
-        cmd := exec.Command("./granimate", fmt.Sprintf("%d", cid), r_center, r_radius, c_center, c_radius, scale, no_frames)
+        cmd := exec.Command("./granimate", strconv.Itoa(cid), r_center, r_radius, c_center, c_radius, scale, no_frames)
         err = cmd.Run()
         if(err != nil) { 
             //fmt.Println("Error: ", err)
@@ -67,6 +69,7 @@ func main() {
         no_finished++
 
         return c.SendString(fmt.Sprintf("{\"path\": \"../mp4/%d.mp4\"}", cid))
+        //return c.SendString("{\"path\": \"../mp4/" + strconv.Itoa(cid) + ".mp4\"}")
     })
 
     //app.Listen(":80")
