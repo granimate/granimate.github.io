@@ -72,6 +72,6 @@ func main() {
         //return c.SendString("{\"path\": \"../mp4/" + strconv.Itoa(cid) + ".mp4\"}")
     })
 
-    //app.Listen(":80")
-    app.ListenTLS(":443", "/etc/letsencrypt/live/granimate.art/fullchain.pem", "/etc/letsencrypt/live/granimate.art/privkey.pem");
+    app.Listen(":80")
+    //app.ListenTLS(":443", "/etc/letsencrypt/live/granimate.art/fullchain.pem", "/etc/letsencrypt/live/granimate.art/privkey.pem");
 }

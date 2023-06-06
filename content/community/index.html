@@ -17,14 +17,14 @@
 	var max_id = 0;
 
 	function prev_vid() {
-		if(--curr < 0)
-			curr = max_id-1;
+		curr = (curr+1)%max_id;
 
 		vids.innerHTML = "<video onclick=\"playpause(this)\" autoplay loop muted playsinline><source src=\"../mp4/" + curr + ".mp4\" type=\"video/mp4\"></video><br>";
 	}
 
 	function next_vid() {
-		curr = (curr+1)%max_id;
+		if(--curr < 0)
+			curr = max_id-1;
 
 		vids.innerHTML = "<video onclick=\"playpause(this)\" autoplay loop muted playsinline><source src=\"../mp4/" + curr + ".mp4\" type=\"video/mp4\"></video><br>";
 	}
