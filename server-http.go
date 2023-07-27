@@ -70,24 +70,39 @@ func postUpload(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
+    https := (os.Args[2] == "https")
+    domain := os.Args[3]
+    port := os.Args[4]
+
     mux := http.NewServeMux()
     mux.HandleFunc("/max-id", getMaxId)
     mux.HandleFunc("/upload", postUpload)
     mux.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("./public"))))
-    //http.HandleFunc("/hello", getHello)
 
-    /*fmt.Println("hosting http-server on port 80")
-    err := http.ListenAndServe(":80", mux)
-    if err != nil {
-        log.Fatal("Listen: ", err)
-    }*/
-    
-    fmt.Println("hosting http-server on port 8080")
-    err := http.ListenAndServeTLS(":443", 
-        "/etc/letsencrypt/live/granimate.art/fullchain.pem", 
-        "/etc/letsencrypt/live/granimate.art/privkey.pem", 
-        mux);
-    if err != nil {
-        log.Fatal("ListenAndServe: ", err)
+    cmd := exec.Command("/bin/bash", "-c", "rm ./public/mp4/*.mp4")
+    err = cmd.Run()
+    if(err != nil) { 
+        fmt.Println("Error: ", err)
+    }
+
+    if(https) {
+        fmt.Println("hosting " + domain + " over https on port " + port)
+        for {
+            err := http.ListenAndServeTLS(":" + port, 
+                "/etc/letsencrypt/live/" + domain + "/fullchain.pem", 
+                "/etc/letsencrypt/live/" + domain + "/privkey.pem", 
+                mux);
+            if err != nil {
+                log.Println("ListenAndServe: ", err)
+            }
+        }
+    } else {
+        fmt.Println("hosting " + domain + " over http on port " + port)
+        for {
+            err := http.ListenAndServe(":" + port, mux)
+            if err != nil {
+                log.Println("Listen: ", err)
+            }
+        }
     }
 }

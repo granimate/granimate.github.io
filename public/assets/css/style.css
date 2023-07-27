@@ -21,7 +21,7 @@
   --sherb-pink:   #e368db;
 
   --filter-neon-green:  invert(56%) sepia(64%) saturate(631%) hue-rotate(45deg)  brightness(112%) contrast(102%);
-  --filter-sherb-green: invert(96%) sepia(94%) saturate(735%) hue-rotate(39deg)  brightness(92%)  contrast(93%);;
+  --filter-sherb-green: invert(96%) sepia(94%) saturate(735%) hue-rotate(39deg)  brightness(92%)  contrast(93%);
 
   --primary-dark: var(--black);
   --secondary-dark: var(--grey);

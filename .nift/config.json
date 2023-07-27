@@ -10,7 +10,7 @@
 		"build-threads": -1,
 		"paginate-threads": -1,
 		"incremental-mode": "modified",
-		"root-branch": "stage",
+		"root-branch": "main",
 		"output-branch": "main",
 		"lolcat-default": false,
 		"lolcat-cmd": "nift lolcat-cc -f",
