@@ -70,9 +70,9 @@ func postUpload(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-    https := (os.Args[2] == "https")
-    domain := os.Args[3]
-    port := os.Args[4]
+    https := (os.Args[1] == "https")
+    domain := os.Args[2]
+    port := os.Args[3]
 
     mux := http.NewServeMux()
     mux.HandleFunc("/max-id", getMaxId)
@@ -80,7 +80,7 @@ func main() {
     mux.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("./public"))))
 
     cmd := exec.Command("/bin/bash", "-c", "rm ./public/mp4/*.mp4")
-    err = cmd.Run()
+    err := cmd.Run()
     if(err != nil) { 
         fmt.Println("Error: ", err)
     }
